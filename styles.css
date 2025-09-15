@@ -1,0 +1,17 @@
+body {
+  margin: 0;
+  font-family: system-ui, sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background: #faf9f7;
+  color: #333;
+}
+.container {
+  text-align: center;
+}
+h1 {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+}
