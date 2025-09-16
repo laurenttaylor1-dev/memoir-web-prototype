@@ -1,17 +1,21 @@
-body {
-  margin: 0;
-  font-family: system-ui, sans-serif;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-  background: #faf9f7;
-  color: #333;
-}
-.container {
-  text-align: center;
-}
-h1 {
-  font-size: 3rem;
-  margin-bottom: 1rem;
-}
+<style>
+:root{ --bg:#f4ead9; --ink:#3b2a22; --muted:#6b5a51; --accent:#ffcf6b }
+*{box-sizing:border-box}
+html,body{height:100%}
+body{margin:0; font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial; color:var(--ink); background:var(--bg)}
+.wrap{min-height:100%; display:grid; place-items:center; padding:48px 20px; text-align:center}
+.logo-card{margin:0 0 8px}
+.logo{width:min(420px, 78vw); height:auto; display:block; margin-inline:auto; filter: drop-shadow(0 6px 18px rgba(0,0,0,0.06))}
+.title{font-size:clamp(28px,5vw,46px); letter-spacing:-0.02em; margin:12px 0 6px}
+.lead{color:var(--muted); font-size:clamp(16px,2.5vw,19px); margin:0 0 18px; max-width:68ch}
+.cta{display:flex; flex-wrap:wrap; gap:12px; justify-content:center; align-items:center}
+.signup{display:flex; gap:10px; flex-wrap:wrap; justify-content:center}
+input[type=email]{background:#fff; color:var(--ink); border:1px solid rgba(0,0,0,0.08); border-radius:14px; padding:14px 16px; min-width:min(420px,82vw); outline:none; font-size:16px}
+.btn{border:1px solid rgba(0,0,0,0.08); border-radius:14px; padding:14px 18px; font-weight:600; cursor:pointer; font-size:16px}
+.btn.primary{background:var(--accent)}
+.btn.ghost{background:transparent}
+.meta{margin-top:20px; color:var(--muted)}
+.links{display:flex; gap:16px; justify-content:center; margin-top:8px}
+.links a{color:var(--ink); opacity:0.8; text-decoration:none; border-bottom:1px dashed rgba(0,0,0,0.25)}
+.sr-only{position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0}
+</style>
