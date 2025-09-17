@@ -1,64 +1,60 @@
-<!doctype html>
-<html lang="en">
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Memoir — Coming Soon</title>
-  <meta name="description" content="Memoir helps families capture and share life stories with warm, AI‑assisted writing. Launching soon." />
-  <meta name="robots" content="index,follow" />
-  <meta property="og:title" content="Memoir — Coming Soon" />
-  <meta property="og:description" content="Capture and share life stories. Launching soon." />
-  <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://www.memoirapp.co" />
-  <meta property="og:image" content="/Logo.jpg" />
-  <meta name="theme-color" content="#f4ead9" />
-  <link rel="icon" href="/Logo.jpg" />
-  <link rel="preload" href="/Logo.jpg" as="image"/>
-  <link rel="stylesheet" href="/styles.css" />
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "SoftwareApplication",
-    "name": "Memoir",
-    "operatingSystem": "iOS, Android, Web",
-    "applicationCategory": "LifestyleApplication",
-    "description": "Memoir helps people preserve their memories by recording, transcribing, and sharing stories with family.",
-    "url": "https://www.memoirapp.co"
-  }
-  </script>
-</head>
 <body>
   <main class="wrap">
-    <figure class="logo-card">
-      <img src="/Logo.jpg" alt="Memoir logo: open book" class="logo" />
-      <figcaption class="sr-only">Memoir — Preserve and share your stories</figcaption>
-    </figure>
+    <!-- Full-viewport hero with the logo centered -->
+    <section class="hero">
+      <img src="/Logo.jpg" alt="Memoir logo" class="logo" />
+      <h1 class="title">Memoir</h1>
 
-    <h1 class="title">Stories that last a lifetime</h1>
-    <p class="lead">We’re putting the final touches on Memoir. Leave your email and we’ll invite you as soon as it’s ready.</p>
+      <p class="lead">
+        We’re putting the final touches on Memoir. Leave your email and we’ll invite you as soon as it’s ready.
+      </p>
 
-    <div class="cta">
-      <!-- Replace the Formspree action with your endpoint (Mailchimp/ConvertKit) when ready -->
-      <form class="signup" action="https://formspree.io/f/xbldgkpd" method="POST">
-        <label for="email" class="sr-only">Email</label>
-        <input id="email" name="email" type="email" placeholder="you@email.com" required />
-        <button type="submit" class="btn primary">Notify me</button>
-      </form>
-      <button class="btn ghost" aria-disabled="true">Coming Soon</button>
-    </div>
+      <div class="cta">
+        <form class="signup" id="waitlist-form">
+          <label for="email" class="sr-only">Email</label>
+          <input id="email" name="email" type="email" placeholder="you@email.com" required />
+          <button type="submit" class="btn primary">Notify me</button>
+        </form>
+        <button class="btn ghost" aria-disabled="true">Coming Soon</button>
+      </div>
+
+      <div id="form-status" aria-live="polite" class="status"></div>
+    </section>
 
     <footer class="meta">
       <small>© <span id="y"></span> Memoir — Testing phase</small>
       <nav class="links">
-        <a href="mailto:hello@memoirapp.co">Contact</a>
+        <a href="mailto:memoirapp@outlook.com">Contact</a>
         <a href="/privacy.html" aria-disabled="true" onclick="alert('Privacy Policy will be available at launch.'); return false;">Privacy</a>
         <a href="/terms.html" aria-disabled="true" onclick="alert('Terms will be available at launch.'); return false;">Terms</a>
       </nav>
     </footer>
   </main>
 
+  <!-- Supabase (optional waitlist storage) -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <script>
+    const SUPABASE_URL = "https://YOUR-PROJECT-REF.supabase.co"; // replace
+    const SUPABASE_ANON_KEY = "YOUR-ANON-KEY";                   // replace
+    const sb = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+    const form = document.getElementById('waitlist-form');
+    const statusEl = document.getElementById('form-status');
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      statusEl.textContent = 'Saving…';
+      const email = document.getElementById('email').value.trim();
+      try {
+        const { error } = await sb.from('waitlist').insert({ email });
+        if (error) throw error;
+        form.reset();
+        statusEl.innerHTML = "🎉 Thank you! You're on the list. We'll email <strong>memoirapp@outlook.com</strong> with new sign-ups.";
+      } catch (err) {
+        statusEl.innerHTML = 'Hmm, something went wrong. You can also email us at <a href="mailto:memoirapp@outlook.com">memoirapp@outlook.com</a>.';
+      }
+    });
+
     document.getElementById('y').textContent = new Date().getFullYear();
   </script>
 </body>
-</html>
