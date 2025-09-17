@@ -1,32 +1,49 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Memoir — Coming Soon</title>
+  <meta name="description" content="Memoir helps families capture and share life stories with warm, AI-assisted writing. Launching soon." />
+  <meta name="robots" content="index,follow" />
+  <meta property="og:title" content="Memoir — Coming Soon" />
+  <meta property="og:description" content="Capture and share life stories. Launching soon." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://www.memoirapp.co" />
+  <meta property="og:image" content="/Logo.jpg" />
+  <meta name="theme-color" content="#f4ead9" />
+  <link rel="icon" href="/Logo.jpg" />
+  <link rel="stylesheet" href="/styles.css" />
+</head>
 <body>
-  <main class="wrap">
-    <!-- Full-viewport hero with the logo centered -->
-    <section class="hero">
-      <img src="/Logo.jpg" alt="Memoir logo" class="logo" />
-      <h1 class="title">Memoir</h1>
+  <main>
+    <img src="/Logo.jpg" alt="Memoir background logo" class="logo" />
+    <h1 class="title">Memoir</h1>
 
-      <p class="lead">
-        We’re putting the final touches on Memoir. Leave your email and we’ll invite you as soon as it’s ready.
-      </p>
+    <p class="teaser">
+      Have you ever wondered where those family stories have gone to? Wouldn't it be great to save those for generations to come? And to share stories with the family?
+    </p>
 
-      <div class="cta">
-        <form class="signup" id="waitlist-form">
-          <label for="email" class="sr-only">Email</label>
-          <input id="email" name="email" type="email" placeholder="you@email.com" required />
-          <button type="submit" class="btn primary">Notify me</button>
-        </form>
-        <button class="btn ghost" aria-disabled="true">Coming Soon</button>
-      </div>
+    <p class="lead">
+      Stories that last a lifetime. We’re putting the final touches on Memoir. Leave your email and we’ll invite you as soon as it’s ready.
+    </p>
 
+    <div class="cta">
+      <form class="signup" id="waitlist-form">
+        <label for="email" class="sr-only">Email</label>
+        <input id="email" name="email" type="email" placeholder="you@email.com" required />
+        <button type="submit" class="btn primary">Notify me</button>
+      </form>
       <div id="form-status" aria-live="polite" class="status"></div>
-    </section>
+      <button class="btn ghost" aria-disabled="true">Coming Soon</button>
+    </div>
 
     <footer class="meta">
       <small>© <span id="y"></span> Memoir — Testing phase</small>
       <nav class="links">
         <a href="mailto:memoirapp@outlook.com">Contact</a>
-        <a href="/privacy.html" aria-disabled="true" onclick="alert('Privacy Policy will be available at launch.'); return false;">Privacy</a>
-        <a href="/terms.html" aria-disabled="true" onclick="alert('Terms will be available at launch.'); return false;">Terms</a>
+        <a href="/privacy.html" onclick="alert('Privacy Policy will be available at launch.'); return false;">Privacy</a>
+        <a href="/terms.html" onclick="alert('Terms will be available at launch.'); return false;">Terms</a>
       </nav>
     </footer>
   </main>
@@ -51,10 +68,12 @@
         form.reset();
         statusEl.innerHTML = "🎉 Thank you! You're on the list. We'll email <strong>memoirapp@outlook.com</strong> with new sign-ups.";
       } catch (err) {
-        statusEl.innerHTML = 'Hmm, something went wrong. You can also email us at <a href="mailto:memoirapp@outlook.com">memoirapp@outlook.com</a>.';
+        console.error(err);
+        statusEl.innerHTML = 'Something went wrong. Please email us directly at <a href=\"mailto:memoirapp@outlook.com\">memoirapp@outlook.com</a>.';
       }
     });
 
     document.getElementById('y').textContent = new Date().getFullYear();
   </script>
 </body>
+</html>
